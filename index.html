@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Ortho-3DGS: True Digital Orthophoto Generation</title>
-  
+  <title>DA-3DGS: Vehicle-Free UAV Orthophoto Generation</title>
+
   <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css"/>
 
   <style type="text/css">
     body {
-      font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+      font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
       font-weight: 300;
       font-size: 18px;
       margin-left: auto;
       margin-right: auto;
       width: 1100px;
-      scroll-behavior: smooth; /* 添加平滑滚动效果，让点击 Bibtex 跳转更优雅 */
+      scroll-behavior: smooth;
     }
     h1 {
       font-size: 32px;
@@ -51,7 +51,7 @@
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      width: 480px; /* 控制网格中每张图片的宽度 */
+      width: 480px;
       margin: 10px auto;
     }
     .image-label {
@@ -69,38 +69,55 @@
       width: 100%;
       display: block;
     }
+    .affiliation-super {
+      font-size: 14px;
+      vertical-align: super;
+    }
+    .notice-text {
+      font-size: 16px;
+      color: #d9534f;
+      font-style: italic;
+      margin-top: 5px;
+    }
   </style>
 </head>
 <body>
-  
+
   <br>
   <center>
-    <span style="font-size:36px; font-weight: bold;">Ortho-3DGS: True Digital Orthophoto Generation</span><br>
-    <span style="font-size:24px">From UAV Imagery Using Depth-Regulated 3D Gaussian Splatting</span><br><br>
-    
+    <span style="font-size:36px; font-weight: bold;">DA-3DGS: Anchor-Guided Dynamic-Aware 3D Gaussian Splatting</span><br>
+    <span style="font-size:24px">for Vehicle-Free UAV Orthophoto Generation</span><br><br>
+
     <table align="center" width="900px">
       <tr>
-        <td align="center"><span style="font-size:20px">Junxing Yang</span></td>
-        <td align="center"><span style="font-size:20px">Zhenglong Cai</span></td>
-        <td align="center"><span style="font-size:20px">Tianjiao Wang</span></td>
-        <td align="center"><span style="font-size:20px">Haoran Gao</span></td>
-        <td align="center"><span style="font-size:20px">He Huang</span></td>
+        <td align="center"><span style="font-size:20px">Zhenglong Cai<span class="affiliation-super">1</span></span></td>
+        <td align="center"><span style="font-size:20px">San Jiang<span class="affiliation-super">1</span></span></td>
+        <td align="center"><span style="font-size:20px">He Huang<span class="affiliation-super">2</span></span></td>
+        <td align="center"><span style="font-size:20px">Xingchen Liu<span class="affiliation-super">2</span></span></td>
+        <td align="center"><span style="font-size:20px">Haoran Gao<span class="affiliation-super">2</span></span></td>
+        <td align="center"><span style="font-size:20px">Junxing Yang<span class="affiliation-super">2*</span></span></td>
       </tr>
     </table>
-    
+
     <br>
-    <span style="font-size:20px"><i>IEEE J-STARS 2025</i></span><br><br>
-    
+    <span style="font-size:16px">
+      <sup>1</sup> Guangdong Key Laboratory of Urban Informatics, Shenzhen University, Shenzhen, China<br>
+      <sup>2</sup> School of Geomatics and Urban Spatial Informatics, Beijing University of Civil Engineering and Architecture, Beijing, China<br>
+      <i>* Corresponding Author</i>
+    </span><br><br>
+
+    <span style="font-size:20px"><i>Code and datasets will be officially open-sourced by the end of 2026.</i></span><br><br>
+
     <table align="center" width="600px">
       <tr>
         <td align="center" width="150px">
           <center>
-            <span style="font-size:24px"><a href="https://doi.org/10.1109/JSTARS.2025.3552105" target="_blank">[Paper]</a></span>
+            <span style="font-size:24px"><a href="#" target="_blank">[Paper]</a></span>
           </center>
         </td>
         <td align="center" width="150px">
           <center>
-            <span style="font-size:24px"><a href="https://github.com/alexzhenglong/Ortho-3DGS" target="_blank">[Code]</a></span>
+            <span style="font-size:24px"><a href="https://github.com/alexzhenglong/OrthoClean-GS" target="_blank">[Code]</a></span>
           </center>
         </td>
         <td align="center" width="150px">
@@ -116,7 +133,7 @@
       </tr>
     </table>
   </center>
-  
+
   <br>
   <hr>
 
@@ -124,14 +141,7 @@
   <table align="center" width="850px">
     <tr>
       <td align="justify">
-        This work presents <b>Ortho-3DGS</b>, a robust framework for True Digital Orthophoto Map (TDOM) generation 
-        from UAV imagery, published in <i>IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing (J-STARS)</i>.
-        Our method introduces a <b>depth-regulated 3D Gaussian Splatting</b> approach that integrates geometric consistency 
-        and appearance modeling for reliable orthophoto reconstruction in weakly dynamic urban environments.
-        Experiments on multiple UAV benchmark datasets demonstrate significant improvements in building edge sharpness,
-        occlusion handling, and suppression of ghosting artifacts compared to state-of-the-art methods and commercial software.
-        <br><br>
-        📄 <b>DOI:</b> <a href="https://doi.org/10.1109/JSTARS.2025.3552105" target="_blank">10.1109/JSTARS.2025.3552105</a>
+        Generating artifact-free digital orthophoto maps (DOMs) in dynamic urban environments remains a critical challenge in UAV photogrammetry. Although 3D Gaussian Splatting (3DGS) enables highly efficient scene reconstruction, it lacks robustness against transient objects, frequently causing severe ghosting artifacts and geometric distortions. To address this, we propose a dynamic-aware neural Gaussian framework (<b>DA-3DGS</b>) designed to explicitly decouple and eliminate moving vehicles from the reconstruction pipeline. Specifically, we integrate zero-shot 2D semantic priors with a rigorous 3D-2D projection mechanism to accurately localize view-dependent dynamic regions across multi-view imagery. Based on this spatial correspondence, a learnable dynamic factor is introduced into the neural Gaussian attributes to adaptively modulate rendering opacity. This formulation isolates dynamic pixels during optimization, effectively preventing moving entities from corrupting the static background. Extensive experiments on congested urban datasets demonstrate that our method significantly outperforms mainstream algorithms in suppressing dynamic vehicle artifacts. Quantitatively, our approach reduces the Artifact Pixel Density (APD) to just 0.07% in highly dynamic scenes, a substantial improvement over the 3.90% typical of baseline methods. Most importantly, the synthesized clean orthophotos achieve rigorous mapping-grade accuracy, preserving geometric precision and structural fidelity comparable to established commercial pipelines, thereby providing a robust solution for practical urban mapping.
       </td>
     </tr>
   </table>
@@ -143,11 +153,7 @@
   <table align="center" width="850px">
     <tr>
       <td align="justify">
-        The following diagram illustrates the overall pipeline of Ortho-3DGS. 
-        Our framework consists of three key modules: 
-        <b>(1) Depth-Guided Gaussian Splatting</b>, 
-        <b>(2) Divide-and-Conquer Large-Scene Reconstruction</b>, and 
-        <b>(3) Anisotropic Kernel Rendering</b>.
+        The following diagram illustrates the core mechanism of <b>DA-3DGS</b>. Our framework accurately localizes dynamic entities across multi-view images using zero-shot semantic priors and 3D-2D projection. By introducing a learnable dynamic factor to the 3D Gaussian attributes, we adaptively modulate opacity, effectively decoupling transient vehicles from the static background during the optimization process.
       </td>
     </tr>
   </table>
@@ -155,7 +161,7 @@
   <table align="center" width="900px">
     <tr>
       <td align="center">
-        <img src="images/pipeline.jpg" style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.05);" alt="Ortho-3DGS pipeline overview."/>
+        <img src="images/pipeline.png" style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.05);" alt="DA-3DGS pipeline overview."/>
       </td>
     </tr>
   </table>
@@ -163,11 +169,11 @@
   <br>
   <hr>
 
-  <center><h1>Experimental Results</h1></center>
+  <center><h1>Results</h1></center>
   <br>
 
   <p align="center" style="font-family: 'Georgia', serif; font-style: italic; font-size: 1.15rem; color: #4a4a4a; margin-bottom: 20px;">
-    Swipe to compare <span style="font-style: normal; font-weight: 700; color: #000;">Ortho-3DGS</span> against baseline methods on building edges.
+    Swipe to compare <span style="font-style: normal; font-weight: 700; color: #000;">DA-3DGS</span> against baseline methods on vehicle removal in <b>low-frequency</b> dynamic scenes.
   </p>
 
   <table align="center" width="1000px">
@@ -175,21 +181,21 @@
       <td align="center" width="500px">
         <div class="comparison-container">
           <img-comparison-slider>
-            <img slot="first" src="images/p4d-1.png" alt="Pix4D"/>
-            <img slot="second" src="images/ours-1.png" alt="Ortho-3DGS"/>
+            <img slot="first" src="images/gslow-1.png" alt="Ortho-3DGS"/>
+            <img slot="second" src="images/ourslow-1.png" alt="DA-3DGS"/>
           </img-comparison-slider>
-          <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Pix4D</div>
-          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">Ortho-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Ortho-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
         </div>
       </td>
       <td align="center" width="500px">
         <div class="comparison-container">
           <img-comparison-slider>
-            <img slot="first" src="images/ms-1.png" alt="Metashape"/>
-            <img slot="second" src="images/ours-1.png" alt="Ortho-3DGS"/>
+            <img slot="first" src="images/p4dlow-1.png" alt="Pix4D"/>
+            <img slot="second" src="images/ourslow-1.png" alt="DA-3DGS"/>
           </img-comparison-slider>
-          <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Metashape</div>
-          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">Ortho-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Pix4D</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
         </div>
       </td>
     </tr>
@@ -197,21 +203,21 @@
       <td align="center" width="500px">
         <div class="comparison-container">
           <img-comparison-slider>
-            <img slot="first" src="images/CC-1.png" alt="ContextCapture"/>
-            <img slot="second" src="images/ours-1.png" alt="Ortho-3DGS"/>
+            <img slot="first" src="images/CClow-1.png" alt="ContextCapture"/>
+            <img slot="second" src="images/ourslow-1.png" alt="DA-3DGS"/>
           </img-comparison-slider>
           <div class="image-label" style="position: absolute; top: 10px; left: 10px;">ContextCapture (CC)</div>
-          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">Ortho-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
         </div>
       </td>
       <td align="center" width="500px">
         <div class="comparison-container">
           <img-comparison-slider>
-            <img slot="first" src="images/nerf-1.png" alt="NeRF"/>
-            <img slot="second" src="images/ours-1.png" alt="Ortho-3DGS"/>
+            <img slot="first" src="images/mslow-1.png" alt="Metashape"/>
+            <img slot="second" src="images/ourslow-1.png" alt="DA-3DGS"/>
           </img-comparison-slider>
-          <div class="image-label" style="position: absolute; top: 10px; left: 10px;">NeRF Baseline</div>
-          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">Ortho-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Metashape</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
         </div>
       </td>
     </tr>
@@ -220,29 +226,28 @@
   <br><br>
 
   <p align="center" style="font-family: 'Georgia', serif; font-style: italic; font-size: 1.15rem; color: #4a4a4a; margin-bottom: 20px;">
-    Swipe to compare <span style="font-style: normal; font-weight: 700; color: #000;">Ortho-3DGS</span> against baseline methods on net structures.
+    Swipe to compare <span style="font-style: normal; font-weight: 700; color: #000;">DA-3DGS</span> against baseline methods on vehicle removal in <b>mid-frequency</b> dynamic scenes.
   </p>
-
-  <table align="center" width="1000px">
+<table align="center" width="1000px">
     <tr>
       <td align="center" width="500px">
         <div class="comparison-container">
           <img-comparison-slider>
-            <img slot="first" src="images/p4d-3.png" alt="Pix4D"/>
-            <img slot="second" src="images/ours-3.png" alt="Ortho-3DGS"/>
+            <img slot="first" src="images/gsmid-1.png" alt="Ortho-3DGS"/>
+            <img slot="second" src="images/oursmid-1.png" alt="DA-3DGS"/>
           </img-comparison-slider>
-          <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Pix4D</div>
-          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">Ortho-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Ortho-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
         </div>
       </td>
       <td align="center" width="500px">
         <div class="comparison-container">
           <img-comparison-slider>
-            <img slot="first" src="images/ms-3.png" alt="Metashape"/>
-            <img slot="second" src="images/ours-3.png" alt="Ortho-3DGS"/>
+            <img slot="first" src="images/p4dmid-1.png" alt="Pix4D"/>
+            <img slot="second" src="images/oursmid-1.png" alt="DA-3DGS"/>
           </img-comparison-slider>
-          <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Metashape</div>
-          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">Ortho-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Pix4D</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
         </div>
       </td>
     </tr>
@@ -250,53 +255,116 @@
       <td align="center" width="500px">
         <div class="comparison-container">
           <img-comparison-slider>
-            <img slot="first" src="images/CC-3.png" alt="ContextCapture"/>
-            <img slot="second" src="images/ours-3.png" alt="Ortho-3DGS"/>
+            <img slot="first" src="images/CCmid-1.png" alt="ContextCapture"/>
+            <img slot="second" src="images/oursmid-1.png" alt="DA-3DGS"/>
           </img-comparison-slider>
           <div class="image-label" style="position: absolute; top: 10px; left: 10px;">ContextCapture (CC)</div>
-          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">Ortho-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
         </div>
       </td>
       <td align="center" width="500px">
         <div class="comparison-container">
           <img-comparison-slider>
-            <img slot="first" src="images/nerf-3.png" alt="NeRF"/>
-            <img slot="second" src="images/ours-3.png" alt="Ortho-3DGS"/>
+            <img slot="first" src="images/msmid-1.png" alt="Metashape"/>
+            <img slot="second" src="images/oursmid-1.png" alt="DA-3DGS"/>
           </img-comparison-slider>
-          <div class="image-label" style="position: absolute; top: 10px; left: 10px;">NeRF Baseline</div>
-          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">Ortho-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Metashape</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
         </div>
       </td>
     </tr>
   </table>
+
+
+  <br><br>
+
+  <p align="center" style="font-family: 'Georgia', serif; font-style: italic; font-size: 1.15rem; color: #4a4a4a; margin-bottom: 20px;">
+    Swipe to compare <span style="font-style: normal; font-weight: 700; color: #000;">DA-3DGS</span> against baseline methods on vehicle removal in <b>high-frequency</b> dynamic scenes.
+  </p>
+
+
+    <table align="center" width="1000px">
+    <tr>
+      <td align="center" width="500px">
+        <div class="comparison-container">
+          <img-comparison-slider>
+            <img slot="first" src="images/gshi-1.png" alt="Ortho-3DGS"/>
+            <img slot="second" src="images/ourshi-1.png" alt="DA-3DGS"/>
+          </img-comparison-slider>
+          <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Ortho-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
+        </div>
+      </td>
+      <td align="center" width="500px">
+        <div class="comparison-container">
+          <img-comparison-slider>
+            <img slot="first" src="images/p4dhi-1.png" alt="Pix4D"/>
+            <img slot="second" src="images/ourshi-1.png" alt="DA-3DGS"/>
+          </img-comparison-slider>
+          <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Pix4D</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" width="500px">
+        <div class="comparison-container">
+          <img-comparison-slider>
+            <img slot="first" src="images/CChi-1.png" alt="ContextCapture"/>
+            <img slot="second" src="images/ourshi-1.png" alt="DA-3DGS"/>
+          </img-comparison-slider>
+          <div class="image-label" style="position: absolute; top: 10px; left: 10px;">ContextCapture (CC)</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
+        </div>
+      </td>
+      <td align="center" width="500px">
+        <div class="comparison-container">
+          <img-comparison-slider>
+            <img slot="first" src="images/mshi-1.png" alt="Metashape"/>
+            <img slot="second" src="images/ourshi-1.png" alt="DA-3DGS"/>
+          </img-comparison-slider>
+          <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Metashape</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+
 
   <br><br>
 
   <p align="center" style="font-family: 'Georgia', serif; font-style: italic; font-size: 1.15rem; color: #4a4a4a; margin-top: 30px; margin-bottom: 20px;">
-    Large-scale, 3DGS-based true DOM generation results achieved by <span style="font-style: normal; font-weight: 700; color: #000;">Ortho-3DGS</span>.
-  </p>
+  High-fidelity, vehicle-free orthophoto synthesized by <span style="font-style: normal; font-weight: 700; color: #000;">DA-3DGS</span>, demonstrating robust dynamic artifact suppression in congested urban environments.
+</p>
 
   <table align="center" width="1000px">
     <tr>
       <td align="center">
-        <img style="width: 100%; max-width: 900px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" src="images/largescales.png" alt="Large-scale reconstruction"/>
+        <img style="width: 100%; max-width: 900px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" src="images/apd.png" alt="Clean Orthophoto Generation"/>
       </td>
     </tr>
   </table>
 
-  <br>
+
+<br>
   <hr>
 
-  <center><h1 id="BibTeX">BibTeX</h1></center>
+  <center><h1 id="BibTeX">BibTeX (Prior Work)</h1></center>
+  <p align="center" style="font-family: 'Georgia', serif; font-size: 1rem; color: #4a4a4a; margin-bottom: 20px;">
+    If you are interested in our foundational work on true orthophoto generation, please refer to <b>Ortho-3DGS</b>:
+  </p>
   <table align="center" width="850px">
     <tr>
       <td align="left">
-<pre><code>@article{Yang2025Ortho3DGS,
-  author    = {Junxing Yang and Zhenglong Cai and Tianjiao Wang and Haoran Gao and He Huang},
-  title     = {Ortho-3DGS: True Digital Orthophoto Generation From UAV Imagery Using Depth-Regulated 3D Gaussian Splatting},
-  journal   = {IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing (J-STARS)},
-  year      = {2025},
-  doi       = {10.1109/JSTARS.2025.3552105}
+<pre><code>@ARTICLE{yang2025ortho3dgs,
+  author={Yang, Junxing and Cai, Zhenglong and Wang, Tianjiao and Ye, Tong and Gao, Haoran and Huang, He},
+  journal={IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing},
+  title={Ortho-3DGS: True Digital Orthophoto Generation From Unmanned Aerial Vehicle Imagery Using the Depth-Regulated 3D Gaussian Splatting},
+  year={2025},
+  volume={18},
+  pages={10972-10994},
+  doi={10.1109/JSTARS.2025.3552105}
 }</code></pre>
       </td>
     </tr>
