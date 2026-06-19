@@ -4,178 +4,301 @@
   <meta charset="UTF-8">
   <title>DA-3DGS: Vehicle-Free UAV Orthophoto Generation</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Merriweather:ital@0;1&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css"/>
 
   <style type="text/css">
     body {
-      font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      font-family: 'Inter', sans-serif;
       font-weight: 300;
-      font-size: 18px;
-      margin-left: auto;
-      margin-right: auto;
-      width: 1100px;
+      font-size: 17px;
+      color: #333;
+      background-color: #f8f9fb; /* Light grayish-blue background */
+      margin: 0 auto;
+      width: 100%;
+      max-width: 1200px;
+      padding: 20px;
       scroll-behavior: smooth;
     }
-    h1 {
-      font-size: 32px;
-      font-weight: 300;
-      margin-top: 10px;
+
+    /* Gradient Title */
+    .paper-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #0072ff 0%, #00c6ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+    }
+    .paper-subtitle {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #444;
       margin-bottom: 20px;
     }
-    a:link, a:visited {
-      color: #1367a7;
+
+    /* Authors & Affiliations */
+    .authors {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    .authors a {
+      color: #0072ff;
       text-decoration: none;
+      font-weight: 400;
+      transition: color 0.2s;
     }
-    a:hover {
-      color: #208799;
+    .authors a:hover {
+      color: #ff007f;
     }
-    hr {
-      border: 0;
-      height: 1px;
-      background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-      margin-top: 30px;
+    .affiliation {
+      font-size: 1rem;
+      color: #666;
+      line-height: 1.5;
+    }
+    .affiliation-super {
+      font-size: 0.8rem;
+      vertical-align: super;
+      color: #0072ff;
+      font-weight: 600;
+    }
+
+    /* Flashy Buttons */
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 25px;
+      margin-bottom: 10px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 24px;
+      border-radius: 30px;
+      background: #fff;
+      color: #333;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      border: 1px solid #eaeaea;
+    }
+    .btn i {
+      margin-right: 8px;
+      font-size: 1.2rem;
+      color: #0072ff;
+      transition: color 0.3s ease;
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 114, 255, 0.25);
+      background: linear-gradient(135deg, #0072ff 0%, #00c6ff 100%);
+      color: #fff;
+      border-color: transparent;
+    }
+    .btn:hover i {
+      color: #fff;
+    }
+
+    .notice-text {
+      font-size: 0.95rem;
+      color: #e74c3c;
+      background: rgba(231, 76, 60, 0.1);
+      padding: 8px 15px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+
+    /* Section Titles */
+    h2.section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      text-align: center;
+      margin-top: 50px;
       margin-bottom: 30px;
+      color: #222;
+      position: relative;
     }
-    pre {
-      background-color: #f5f5f5;
-      padding: 20px;
-      border-radius: 8px;
-      font-size: 14px;
-      overflow-x: auto;
-      border: 1px solid #ddd;
+    h2.section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #0072ff, #00c6ff);
+      border-radius: 2px;
     }
+
+    /* Abstract Card */
+    .abstract-card {
+      background: #fff;
+      padding: 35px 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+      border-top: 5px solid #0072ff;
+      margin: 0 auto;
+      max-width: 900px;
+      text-align: justify;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
     /* Slider Customization */
     .comparison-container {
       position: relative;
-      border-radius: 8px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       width: 480px;
-      margin: 10px auto;
+      margin: 15px auto;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 4px solid #fff;
+    }
+    .comparison-container:hover {
+      transform: scale(1.02);
+      box-shadow: 0 15px 40px rgba(0, 114, 255, 0.2);
     }
     .image-label {
-      background: rgba(0, 0, 0, 0.6);
-      color: white;
-      padding: 4px 10px;
-      border-radius: 4px;
-      font-size: 0.9rem;
-      font-weight: bold;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
       pointer-events: none;
       z-index: 10;
-      font-family: 'Segoe UI', sans-serif;
+      backdrop-filter: blur(4px);
     }
     img-comparison-slider img {
       width: 100%;
       display: block;
     }
-    .affiliation-super {
-      font-size: 14px;
-      vertical-align: super;
+
+    /* Large Image Settings */
+    .large-img-container {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+      max-width: 950px;
+      margin: 0 auto;
+      transition: transform 0.3s ease;
     }
-    .notice-text {
-      font-size: 16px;
-      color: #d9534f;
+    .large-img-container:hover {
+      transform: translateY(-5px);
+    }
+    .large-img-container img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Caption Styling */
+    .caption {
+      font-family: 'Merriweather', serif;
       font-style: italic;
-      margin-top: 5px;
+      font-size: 1.1rem;
+      color: #555;
+      text-align: center;
+      margin-top: 15px;
+      margin-bottom: 30px;
+    }
+    .caption span {
+      font-family: 'Inter', sans-serif;
+      font-style: normal;
+      font-weight: 800;
+      color: #0072ff;
+    }
+
+    /* BibTeX Block */
+    pre {
+      background-color: #1e1e1e;
+      color: #d4d4d4;
+      padding: 25px;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      overflow-x: auto;
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+      border-left: 5px solid #00c6ff;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.1), rgba(0,0,0,0));
+      margin: 50px 0;
     }
   </style>
 </head>
 <body>
 
-  <br>
   <center>
-    <span style="font-size:36px; font-weight: bold;">DA-3DGS: Anchor-Guided Dynamic-Aware 3D Gaussian Splatting</span><br>
-    <span style="font-size:24px">for Vehicle-Free UAV Orthophoto Generation</span><br><br>
+    <div class="paper-title">DA-3DGS: Anchor-Guided Dynamic-Aware 3D Gaussian Splatting</div>
+    <div class="paper-subtitle">for Vehicle-Free UAV Orthophoto Generation</div>
 
-    <table align="center" width="900px">
-      <tr>
-        <td align="center"><span style="font-size:20px">Zhenglong Cai<span class="affiliation-super">1</span></span></td>
-        <td align="center"><span style="font-size:20px">San Jiang<span class="affiliation-super">1</span></span></td>
-        <td align="center"><span style="font-size:20px">He Huang<span class="affiliation-super">2</span></span></td>
-        <td align="center"><span style="font-size:20px">Xingchen Liu<span class="affiliation-super">2</span></span></td>
-        <td align="center"><span style="font-size:20px">Haoran Gao<span class="affiliation-super">2</span></span></td>
-        <td align="center"><span style="font-size:20px">Junxing Yang<span class="affiliation-super">2*</span></span></td>
-      </tr>
-    </table>
+    <div class="authors">
+  <a href="https://orcid.org/0009-0002-3574-1143" target="_blank">Zhenglong Cai</a><span class="affiliation-super">1</span> &nbsp;&nbsp;
+  <a href="https://orcid.org/0000-0000-0000-0000" target="_blank">San Jiang</a><span class="affiliation-super">1</span> &nbsp;&nbsp;
+  <a href="https://orcid.org/0000-0003-3236-7539" target="_blank">He Huang</a><span class="affiliation-super">2</span> &nbsp;&nbsp;
+  <a href="https://orcid.org/0000-0000-0000-0000" target="_blank">Xingchen Liu</a><span class="affiliation-super">2</span> &nbsp;&nbsp;
+  <a href="https://orcid.org/0009-0005-5729-4390" target="_blank">Haoran Gao</a><span class="affiliation-super">2</span> &nbsp;&nbsp;
+  <a href="https://orcid.org/0000-0003-1893-3274" target="_blank">Junxing Yang</a><span class="affiliation-super">2*</span>
+</div>
 
-    <br>
-    <span style="font-size:16px">
+    <div class="affiliation">
       <sup>1</sup> Guangdong Key Laboratory of Urban Informatics, Shenzhen University, Shenzhen, China<br>
       <sup>2</sup> School of Geomatics and Urban Spatial Informatics, Beijing University of Civil Engineering and Architecture, Beijing, China<br>
       <i>* Corresponding Author</i>
-    </span><br><br>
+    </div>
 
-    <span style="font-size:20px"><i>Code and datasets will be officially open-sourced by the end of 2026.</i></span><br><br>
+    <div class="btn-container">
+      <a href="#" class="btn"><i class="fa-solid fa-file-pdf"></i> Paper</a>
+      <a href="https://github.com/alexzhenglong/OrthoClean-GS" target="_blank" class="btn"><i class="fa-brands fa-github"></i> Code</a>
+      <a href="https://huggingface.co/datasets/alexzhenglong/Ortho-3DGS-Datasets" target="_blank" class="btn"><i class="fa-solid fa-database"></i> Data</a>
+      <a href="#BibTeX" class="btn"><i class="fa-solid fa-quote-right"></i> BibTeX</a>
+    </div>
 
-    <table align="center" width="600px">
-      <tr>
-        <td align="center" width="150px">
-          <center>
-            <span style="font-size:24px"><a href="#" target="_blank">[Paper]</a></span>
-          </center>
-        </td>
-        <td align="center" width="150px">
-          <center>
-            <span style="font-size:24px"><a href="https://github.com/alexzhenglong/OrthoClean-GS" target="_blank">[Code]</a></span>
-          </center>
-        </td>
-        <td align="center" width="150px">
-          <center>
-            <span style="font-size:24px"><a href="https://huggingface.co/datasets/alexzhenglong/Ortho-3DGS-Datasets" target="_blank">[Data]</a></span>
-          </center>
-        </td>
-        <td align="center" width="150px">
-          <center>
-            <span style="font-size:24px"><a href="#BibTeX">[Bibtex]</a></span>
-          </center>
-        </td>
-      </tr>
-    </table>
+    <div class="notice-text"><i class="fa-solid fa-clock"></i> Code and datasets will be officially open-sourced by the end of 2026.</div>
   </center>
 
-  <br>
   <hr>
 
-  <center><h1>Abstract</h1></center>
-  <table align="center" width="850px">
-    <tr>
-      <td align="justify">
-        Generating artifact-free digital orthophoto maps (DOMs) in dynamic urban environments remains a critical challenge in UAV photogrammetry. Although 3D Gaussian Splatting (3DGS) enables highly efficient scene reconstruction, it lacks robustness against transient objects, frequently causing severe ghosting artifacts and geometric distortions. To address this, we propose a dynamic-aware neural Gaussian framework (<b>DA-3DGS</b>) designed to explicitly decouple and eliminate moving vehicles from the reconstruction pipeline. Specifically, we integrate zero-shot 2D semantic priors with a rigorous 3D-2D projection mechanism to accurately localize view-dependent dynamic regions across multi-view imagery. Based on this spatial correspondence, a learnable dynamic factor is introduced into the neural Gaussian attributes to adaptively modulate rendering opacity. This formulation isolates dynamic pixels during optimization, effectively preventing moving entities from corrupting the static background. Extensive experiments on congested urban datasets demonstrate that our method significantly outperforms mainstream algorithms in suppressing dynamic vehicle artifacts. Quantitatively, our approach reduces the Artifact Pixel Density (APD) to just 0.07% in highly dynamic scenes, a substantial improvement over the 3.90% typical of baseline methods. Most importantly, the synthesized clean orthophotos achieve rigorous mapping-grade accuracy, preserving geometric precision and structural fidelity comparable to established commercial pipelines, thereby providing a robust solution for practical urban mapping.
-      </td>
-    </tr>
-  </table>
+  <h2 class="section-title">Abstract</h2>
+  <div class="abstract-card">
+    Generating artifact-free digital orthophoto maps (DOMs) in dynamic urban environments remains a critical challenge in UAV photogrammetry. Although 3D Gaussian Splatting (3DGS) enables highly efficient scene reconstruction, it lacks robustness against transient objects, frequently causing severe ghosting artifacts and geometric distortions. To address this, we propose a dynamic-aware neural Gaussian framework (<b>DA-3DGS</b>) designed to explicitly decouple and eliminate moving vehicles from the reconstruction pipeline. Specifically, we integrate zero-shot 2D semantic priors with a rigorous 3D-2D projection mechanism to accurately localize view-dependent dynamic regions across multi-view imagery. Based on this spatial correspondence, a learnable dynamic factor is introduced into the neural Gaussian attributes to adaptively modulate rendering opacity. This formulation isolates dynamic pixels during optimization, effectively preventing moving entities from corrupting the static background. Extensive experiments on congested urban datasets demonstrate that our method significantly outperforms mainstream algorithms in suppressing dynamic vehicle artifacts. Quantitatively, our approach reduces the Artifact Pixel Density (APD) to just 0.07% in highly dynamic scenes, a substantial improvement over the 3.90% typical of baseline methods. Most importantly, the synthesized clean orthophotos achieve rigorous mapping-grade accuracy, preserving geometric precision and structural fidelity comparable to established commercial pipelines, thereby providing a robust solution for practical urban mapping.
+  </div>
 
-  <br>
   <hr>
 
-  <center><h1>Method Overview</h1></center>
-  <table align="center" width="850px">
-    <tr>
-      <td align="justify">
-        The following diagram illustrates the core mechanism of <b>DA-3DGS</b>. Our framework accurately localizes dynamic entities across multi-view images using zero-shot semantic priors and 3D-2D projection. By introducing a learnable dynamic factor to the 3D Gaussian attributes, we adaptively modulate opacity, effectively decoupling transient vehicles from the static background during the optimization process.
-      </td>
-    </tr>
-  </table>
-  <br>
-  <table align="center" width="900px">
-    <tr>
-      <td align="center">
-        <img src="images/pipeline.png" style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.05);" alt="DA-3DGS pipeline overview."/>
-      </td>
-    </tr>
-  </table>
+  <h2 class="section-title">Method Overview</h2>
+  <div class="abstract-card" style="margin-bottom: 30px;">
+    The following diagram illustrates the core mechanism of <b>DA-3DGS</b>. Our framework accurately localizes dynamic entities across multi-view images using zero-shot semantic priors and 3D-2D projection. By introducing a learnable dynamic factor to the 3D Gaussian attributes, we adaptively modulate opacity, effectively decoupling transient vehicles from the static background during the optimization process.
+  </div>
 
-  <br>
+  <div class="large-img-container">
+    <img src="images/pipeline.png" alt="DA-3DGS pipeline overview."/>
+  </div>
+
   <hr>
 
-  <center><h1>Results</h1></center>
-  <br>
+  <h2 class="section-title">Experimental Results</h2>
 
-  <p align="center" style="font-family: 'Georgia', serif; font-style: italic; font-size: 1.15rem; color: #4a4a4a; margin-bottom: 20px;">
-    Swipe to compare <span style="font-style: normal; font-weight: 700; color: #000;">DA-3DGS</span> against baseline methods on vehicle removal in <b>low-frequency</b> dynamic scenes.
+  <p class="caption">
+    Swipe to compare <span>DA-3DGS</span> against baseline methods on vehicle removal in <b>low-frequency</b> dynamic scenes.
   </p>
-
   <table align="center" width="1000px">
     <tr>
       <td align="center" width="500px">
@@ -185,7 +308,7 @@
             <img slot="second" src="images/ourslow-1.png" alt="DA-3DGS"/>
           </img-comparison-slider>
           <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Ortho-3DGS</div>
-          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px; background: #0072ff;">DA-3DGS</div>
         </div>
       </td>
       <td align="center" width="500px">
@@ -195,7 +318,7 @@
             <img slot="second" src="images/ourslow-1.png" alt="DA-3DGS"/>
           </img-comparison-slider>
           <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Pix4D</div>
-          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px; background: #0072ff;">DA-3DGS</div>
         </div>
       </td>
     </tr>
@@ -207,7 +330,7 @@
             <img slot="second" src="images/ourslow-1.png" alt="DA-3DGS"/>
           </img-comparison-slider>
           <div class="image-label" style="position: absolute; top: 10px; left: 10px;">ContextCapture (CC)</div>
-          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px; background: #0072ff;">DA-3DGS</div>
         </div>
       </td>
       <td align="center" width="500px">
@@ -217,7 +340,7 @@
             <img slot="second" src="images/ourslow-1.png" alt="DA-3DGS"/>
           </img-comparison-slider>
           <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Metashape</div>
-          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px; background: #0072ff;">DA-3DGS</div>
         </div>
       </td>
     </tr>
@@ -225,10 +348,10 @@
 
   <br><br>
 
-  <p align="center" style="font-family: 'Georgia', serif; font-style: italic; font-size: 1.15rem; color: #4a4a4a; margin-bottom: 20px;">
-    Swipe to compare <span style="font-style: normal; font-weight: 700; color: #000;">DA-3DGS</span> against baseline methods on vehicle removal in <b>mid-frequency</b> dynamic scenes.
+  <p class="caption">
+    Swipe to compare <span>DA-3DGS</span> against baseline methods on vehicle removal in <b>mid-frequency</b> dynamic scenes.
   </p>
-<table align="center" width="1000px">
+  <table align="center" width="1000px">
     <tr>
       <td align="center" width="500px">
         <div class="comparison-container">
@@ -237,7 +360,7 @@
             <img slot="second" src="images/oursmid-1.png" alt="DA-3DGS"/>
           </img-comparison-slider>
           <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Ortho-3DGS</div>
-          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px; background: #0072ff;">DA-3DGS</div>
         </div>
       </td>
       <td align="center" width="500px">
@@ -247,7 +370,7 @@
             <img slot="second" src="images/oursmid-1.png" alt="DA-3DGS"/>
           </img-comparison-slider>
           <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Pix4D</div>
-          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px; background: #0072ff;">DA-3DGS</div>
         </div>
       </td>
     </tr>
@@ -259,7 +382,7 @@
             <img slot="second" src="images/oursmid-1.png" alt="DA-3DGS"/>
           </img-comparison-slider>
           <div class="image-label" style="position: absolute; top: 10px; left: 10px;">ContextCapture (CC)</div>
-          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px; background: #0072ff;">DA-3DGS</div>
         </div>
       </td>
       <td align="center" width="500px">
@@ -269,21 +392,18 @@
             <img slot="second" src="images/oursmid-1.png" alt="DA-3DGS"/>
           </img-comparison-slider>
           <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Metashape</div>
-          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px; background: #0072ff;">DA-3DGS</div>
         </div>
       </td>
     </tr>
   </table>
 
-
   <br><br>
 
-  <p align="center" style="font-family: 'Georgia', serif; font-style: italic; font-size: 1.15rem; color: #4a4a4a; margin-bottom: 20px;">
-    Swipe to compare <span style="font-style: normal; font-weight: 700; color: #000;">DA-3DGS</span> against baseline methods on vehicle removal in <b>high-frequency</b> dynamic scenes.
+  <p class="caption">
+    Swipe to compare <span>DA-3DGS</span> against baseline methods on vehicle removal in <b>high-frequency</b> dynamic scenes.
   </p>
-
-
-    <table align="center" width="1000px">
+  <table align="center" width="1000px">
     <tr>
       <td align="center" width="500px">
         <div class="comparison-container">
@@ -292,7 +412,7 @@
             <img slot="second" src="images/ourshi-1.png" alt="DA-3DGS"/>
           </img-comparison-slider>
           <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Ortho-3DGS</div>
-          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px; background: #0072ff;">DA-3DGS</div>
         </div>
       </td>
       <td align="center" width="500px">
@@ -302,7 +422,7 @@
             <img slot="second" src="images/ourshi-1.png" alt="DA-3DGS"/>
           </img-comparison-slider>
           <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Pix4D</div>
-          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px; background: #0072ff;">DA-3DGS</div>
         </div>
       </td>
     </tr>
@@ -314,7 +434,7 @@
             <img slot="second" src="images/ourshi-1.png" alt="DA-3DGS"/>
           </img-comparison-slider>
           <div class="image-label" style="position: absolute; top: 10px; left: 10px;">ContextCapture (CC)</div>
-          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px; background: #0072ff;">DA-3DGS</div>
         </div>
       </td>
       <td align="center" width="500px">
@@ -324,34 +444,25 @@
             <img slot="second" src="images/ourshi-1.png" alt="DA-3DGS"/>
           </img-comparison-slider>
           <div class="image-label" style="position: absolute; top: 10px; left: 10px;">Metashape</div>
-          <div class="image-label" style="position: absolute; top: 10px; right: 10px;">DA-3DGS</div>
+          <div class="image-label" style="position: absolute; top: 10px; right: 10px; background: #0072ff;">DA-3DGS</div>
         </div>
       </td>
     </tr>
   </table>
 
-
-
   <br><br>
 
-  <p align="center" style="font-family: 'Georgia', serif; font-style: italic; font-size: 1.15rem; color: #4a4a4a; margin-top: 30px; margin-bottom: 20px;">
-  High-fidelity, vehicle-free orthophoto synthesized by <span style="font-style: normal; font-weight: 700; color: #000;">DA-3DGS</span>, demonstrating robust dynamic artifact suppression in congested urban environments.
-</p>
+  <p class="caption">
+    High-fidelity, vehicle-free orthophoto synthesized by <span>DA-3DGS</span>, demonstrating robust dynamic artifact suppression in congested urban environments.
+  </p>
+  <div class="large-img-container">
+    <img src="images/apd.png" alt="Clean Orthophoto Generation"/>
+  </div>
 
-  <table align="center" width="1000px">
-    <tr>
-      <td align="center">
-        <img style="width: 100%; max-width: 900px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" src="images/apd.png" alt="Clean Orthophoto Generation"/>
-      </td>
-    </tr>
-  </table>
-
-
-<br>
   <hr>
 
-  <center><h1 id="BibTeX">BibTeX (Prior Work)</h1></center>
-  <p align="center" style="font-family: 'Georgia', serif; font-size: 1rem; color: #4a4a4a; margin-bottom: 20px;">
+  <h2 id="BibTeX" class="section-title">BibTeX (Prior Work)</h2>
+  <p style="text-align: center; color: #555; margin-bottom: 20px;">
     If you are interested in our foundational work on true orthophoto generation, please refer to <b>Ortho-3DGS</b>:
   </p>
   <table align="center" width="850px">
